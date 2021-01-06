@@ -5,7 +5,7 @@ from django.core.files.base import ContentFile
 from django.core.files.storage import Storage
 from django.utils.encoding import filepath_to_uri
 
-from dbfiles.models import DBFile
+from .models import DBFile
 
 
 class DBStorage(Storage):

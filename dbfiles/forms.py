@@ -2,7 +2,7 @@ from django import forms
 from django.urls import reverse
 from django.utils.safestring import mark_safe
 
-from dbfiles.models import DBFile
+from .models import DBFile
 
 widget_template = """\
 <table>

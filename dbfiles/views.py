@@ -7,7 +7,7 @@ from django.utils.http import http_date
 from django.views.generic.base import View
 from django.views.static import was_modified_since
 
-from dbfiles.models import DBFile
+from .models import DBFile
 
 
 class DBFileView(View):

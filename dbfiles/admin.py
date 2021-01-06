@@ -2,8 +2,8 @@ from django.contrib import admin
 from django.template.defaultfilters import filesizeformat
 from django.urls import reverse
 
-from dbfiles.forms import DBFileForm
-from dbfiles.models import DBFile
+from .forms import DBFileForm
+from .models import DBFile
 
 
 @admin.register(DBFile)
