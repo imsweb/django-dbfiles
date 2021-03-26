@@ -8,7 +8,8 @@ from dbfiles.models import DBFile
 class DBFileFormTests(TestCase):
     def test_save(self):
         form = DBFileForm(
-            data={"name": "hello-world.txt"}, files={"file": SimpleUploadedFile("test.file", b"Hello World!")}
+            data={"name": "hello-world.txt"},
+            files={"file": SimpleUploadedFile("test.file", b"Hello World!")},
         )
         self.assertTrue(form.is_valid(), form.errors)
 

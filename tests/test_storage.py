@@ -45,7 +45,9 @@ class DBStorageTests(TestCase):
         ctime = self.storage.created_time(name)
 
         self.assertEqual(DBFile.objects.get(name=name).created_on, ctime)
-        self.assertLess(timezone.now() - self.storage.created_time(name), timedelta(seconds=1))
+        self.assertLess(
+            timezone.now() - self.storage.created_time(name), timedelta(seconds=1)
+        )
         self.assertNumQueries(1, self.storage.created_time, name)
 
     def test_file_modified_time(self):
@@ -54,7 +56,9 @@ class DBStorageTests(TestCase):
         mtime = self.storage.modified_time(name)
 
         self.assertEqual(DBFile.objects.get(name=name).updated_on, mtime)
-        self.assertLess(timezone.now() - self.storage.modified_time(name), timedelta(seconds=1))
+        self.assertLess(
+            timezone.now() - self.storage.modified_time(name), timedelta(seconds=1)
+        )
         self.assertNumQueries(1, self.storage.modified_time, name)
 
     @override_settings(USE_TZ=False)
@@ -76,7 +80,10 @@ class DBStorageTests(TestCase):
         self.assertTrue(DBFile.objects.filter(name=f.name).exists())
 
     def test_file_url(self):
-        self.assertEqual(self.storage.url("test.file"), "{}{}".format(self.storage.base_url, "test.file"))
+        self.assertEqual(
+            self.storage.url("test.file"),
+            "{}{}".format(self.storage.base_url, "test.file"),
+        )
 
         self.assertEqual(
             self.storage.url(r"""~!*()'@#$%^&*abc`+ =.file"""),

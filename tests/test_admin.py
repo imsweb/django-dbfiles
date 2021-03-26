@@ -20,11 +20,16 @@ class DBFileAdminTests(TestCase):
         self.assertTrue(logged_in)
 
     def test_admin_list_view(self):
-        url = reverse("admin:{app_label}_{model_name}_changelist".format(**self.url_parts))
+        url = reverse(
+            "admin:{app_label}_{model_name}_changelist".format(**self.url_parts)
+        )
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
 
     def test_admin_details_view(self):
-        url = reverse("admin:{app_label}_{model_name}_change".format(**self.url_parts), args=[self.db_file.pk])
+        url = reverse(
+            "admin:{app_label}_{model_name}_change".format(**self.url_parts),
+            args=[self.db_file.pk],
+        )
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)

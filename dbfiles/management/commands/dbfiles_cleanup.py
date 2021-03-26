@@ -18,15 +18,20 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         # Grab a set of all known files in the database.
         db_files = set(DBFile.objects.values_list("name", flat=True))
-        # Loop through every model we know about, and find any FileField (or ImageField) whose storage is DBStorage.
-        # Keep a set of filenames that exist in any model in the system.
+        # Loop through every model we know about, and find any FileField (or ImageField)
+        # whose storage is DBStorage. Keep a set of filenames that exist in any model in
+        # the system.
         model_files = set()
         for config in apps.get_app_configs():
             for model in config.get_models():
                 for field in model._meta.get_fields():
-                    if isinstance(field, models.FileField) and issubclass(field.storage.__class__, DBStorage):
-                        model_files.update(model.objects.order_by().values_list(field.name, flat=True))
-        # Orphans are then just files that exist in db_file but nowhere else in the system.
+                    if isinstance(field, models.FileField) and issubclass(
+                        field.storage.__class__, DBStorage
+                    ):
+                        model_files.update(
+                            model.objects.order_by().values_list(field.name, flat=True)
+                        )
+        # Orphans are then files that exist in db_file but nowhere else in the system.
         orphans = db_files - model_files
         for filename in sorted(orphans):
             if options["clear"]:

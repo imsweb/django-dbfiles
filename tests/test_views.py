@@ -37,7 +37,8 @@ class DBFileViewTests(TestCase):
         self.assertTrue("Last-Modified" in response)
 
         response = self.client.get(
-            path="/media/{}".format(self.name), HTTP_IF_MODIFIED_SINCE=response["Last-Modified"]
+            path="/media/{}".format(self.name),
+            HTTP_IF_MODIFIED_SINCE=response["Last-Modified"],
         )
         self.assertEqual(response.status_code, 304)
 
@@ -45,9 +46,13 @@ class DBFileViewTests(TestCase):
         self.db_file.content = b"Updated Content!"
         self.db_file.save()
 
-        response = self.client.get(path=self.url, HTTP_IF_MODIFIED_SINCE="invalid-last-modified")
+        response = self.client.get(
+            path=self.url, HTTP_IF_MODIFIED_SINCE="invalid-last-modified"
+        )
         self.assertEqual(response.status_code, 200)
 
     def test_get_not_modified_bad_string(self):
-        response = self.client.get(path=self.url, HTTP_IF_MODIFIED_SINCE="invalid-last-modified")
+        response = self.client.get(
+            path=self.url, HTTP_IF_MODIFIED_SINCE="invalid-last-modified"
+        )
         self.assertEqual(response.status_code, 200)

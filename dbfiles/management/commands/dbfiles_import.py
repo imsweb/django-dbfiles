@@ -11,10 +11,15 @@ from dbfiles.models import DBFile
 class Command(BaseCommand):
     def add_arguments(self, parser):
         parser.add_argument(
-            "--clear", action="store_true", default=False, help="Clears out the db_file table before importing"
+            "--clear",
+            action="store_true",
+            default=False,
+            help="Clears out the db_file table before importing",
         )
         parser.add_argument(
-            "--path", default=settings.MEDIA_ROOT, help="The root directory to import into the db_file table"
+            "--path",
+            default=settings.MEDIA_ROOT,
+            help="The root directory to import into the db_file table",
         )
 
     def handle(self, *args, **options):
@@ -31,7 +36,14 @@ class Command(BaseCommand):
                     print('"%s" already exists in the database, skipping' % rel_path)
                     continue
                 mtime = os.path.getmtime(file_path)
-                mod_time = timezone.make_aware(datetime.datetime.utcfromtimestamp(mtime), timezone.utc)
+                mod_time = timezone.make_aware(
+                    datetime.datetime.utcfromtimestamp(mtime), timezone.utc
+                )
                 with open(file_path, "rb") as f:
                     print('Importing "%s"' % rel_path)
-                    DBFile.objects.create(content=f.read(), name=rel_path, created_on=mod_time, updated_on=mod_time)
+                    DBFile.objects.create(
+                        content=f.read(),
+                        name=rel_path,
+                        created_on=mod_time,
+                        updated_on=mod_time,
+                    )

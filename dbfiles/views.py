@@ -16,7 +16,9 @@ class DBFileView(View):
 
         mtime = time.mktime(db_file.updated_on.timetuple())
         modified = was_modified_since(
-            header=self.request.META.get("HTTP_IF_MODIFIED_SINCE"), mtime=mtime, size=db_file.size
+            header=self.request.META.get("HTTP_IF_MODIFIED_SINCE"),
+            mtime=mtime,
+            size=db_file.size,
         )
 
         if not modified:
