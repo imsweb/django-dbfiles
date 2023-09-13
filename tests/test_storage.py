@@ -11,7 +11,6 @@ from dbfiles.storage import DBStorage
 
 
 class DBStorageTests(TestCase):
-
     storage_class = DBStorage
 
     def setUp(self):

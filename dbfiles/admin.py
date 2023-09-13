@@ -8,7 +8,6 @@ from .models import DBFile
 
 @admin.register(DBFile)
 class DBFileAdmin(admin.ModelAdmin):
-
     form = DBFileForm
     list_display = ["name", "download", "file_size", "updated_on", "created_on"]
     ordering = ["name"]

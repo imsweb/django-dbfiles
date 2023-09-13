@@ -2,7 +2,6 @@ from django.db import models
 
 
 class DBFile(models.Model):
-
     content = models.BinaryField(editable=False)
     name = models.CharField(max_length=255, unique=True)
     size = models.IntegerField(default=0)

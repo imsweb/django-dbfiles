@@ -35,7 +35,6 @@ class DBFileWidget(forms.FileInput):
 
 
 class DBFileForm(forms.ModelForm):
-
     file = forms.FileField(widget=DBFileWidget())
 
     class Meta:

@@ -1,6 +1,7 @@
 import mimetypes
 import time
 
+import django
 from django.http.response import HttpResponse, HttpResponseNotModified
 from django.shortcuts import get_object_or_404
 from django.utils.http import http_date
@@ -15,11 +16,14 @@ class DBFileView(View):
         db_file = get_object_or_404(DBFile.objects.defer("content"), name=name)
 
         mtime = time.mktime(db_file.updated_on.timetuple())
-        modified = was_modified_since(
-            header=self.request.META.get("HTTP_IF_MODIFIED_SINCE"),
-            mtime=mtime,
-            size=db_file.size,
-        )
+        kwargs = {
+            "header": self.request.META.get("HTTP_IF_MODIFIED_SINCE"),
+            "mtime": mtime,
+        }
+        if django.VERSION < (4, 1):
+            # The `size` parameter was removed in Django 4.1
+            kwargs["size"] = db_file.size
+        modified = was_modified_since(**kwargs)
 
         if not modified:
             return HttpResponseNotModified()
