@@ -4,7 +4,7 @@ A fork of [django-db-storage](https://github.com/derekkwok/django-db-storage), u
 
 ## Overview
 
-*Warning*: In many cases, storing files in the database is a BAD idea. Your database will easily become bloated and theperformance can degrade rapidly. See this [StackExchange post](http://programmers.stackexchange.com/questions/150669/is-it-a-bad-practice-to-store-large-files-10-mb-in-a-database) for more information.
+*Warning*: In many cases, storing files in the database is a BAD idea. Your database will easily become bloated and performance can degrade rapidly. See this [StackExchange post](http://programmers.stackexchange.com/questions/150669/is-it-a-bad-practice-to-store-large-files-10-mb-in-a-database) for more information.
 
 This is a custom storage backend for storing files in the database instead of the file system and is a drop-in replacement for Django's FileSystemStorage. Some benefits of this application:
 
@@ -18,7 +18,7 @@ This is a custom storage backend for storing files in the database instead of th
 ## Requirements
 
 * Python 3.8 or above
-* Django 3.2 or above
+* Django 4.2 or above
 
 ## Installation
 

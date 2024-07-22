@@ -1,3 +1,5 @@
+from typing import Any
+
 from django import forms
 from django.urls import reverse
 from django.utils.safestring import mark_safe
@@ -21,6 +23,8 @@ widget_template = """\
 
 
 class DBFileWidget(forms.FileInput):
+    instance: Any  # Set by DBFileForm below.
+
     def render(self, name, value, attrs=None, renderer=None):
         input_html = super().render(name, value, attrs=attrs, renderer=renderer)
         if not self.instance:

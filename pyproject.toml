@@ -1,0 +1,47 @@
+[project]
+name = "django-dbfiles"
+dynamic = ["version"]
+description = "Django storage backend for storing files in your database."
+authors = [
+    { name = "Dan Watson", email = "watsond@imsweb.com" }
+]
+dependencies = []
+readme = "README.md"
+requires-python = ">= 3.8"
+license = { text = "BSD" }
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Web Environment",
+    "Framework :: Django",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: BSD License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+]
+keywords = ["django", "database", "storage", "files"]
+
+[project.urls]
+Homepage = "https://github.com/imsweb/django-dbfiles"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.rye]
+managed = true
+dev-dependencies = [
+    "django>=4.2.14",
+]
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["dbfiles"]
+
+[tool.hatch.version]
+path = "dbfiles/__init__.py"
+
+[tool.ruff.lint]
+extend-select = ["I"]
+isort.known-first-party = ["dbfiles"]
