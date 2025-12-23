@@ -1,3 +1,9 @@
+# 3.1.0
+
+* Switched to [uv](https://github.com/astral-sh/uv)
+* Test on Django 5.2 and 6.0
+
+
 # 3.0.0
 
 * Explicitly set `default_auto_field` to `django.db.models.BigAutoField`. If you were

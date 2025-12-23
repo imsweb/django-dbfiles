@@ -6,7 +6,7 @@ __pycache__
 .vscode
 .nova
 .venv
-
+.python-version
 *.egg-info
 build
 dist

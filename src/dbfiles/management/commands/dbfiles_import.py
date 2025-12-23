@@ -37,7 +37,7 @@ class Command(BaseCommand):
                     continue
                 mtime = os.path.getmtime(file_path)
                 mod_time = timezone.make_aware(
-                    datetime.datetime.utcfromtimestamp(mtime), timezone.utc
+                    datetime.datetime.utcfromtimestamp(mtime), datetime.timezone.utc
                 )
                 with open(file_path, "rb") as f:
                     print('Importing "%s"' % rel_path)
