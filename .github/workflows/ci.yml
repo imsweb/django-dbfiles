@@ -2,6 +2,11 @@ name: CI
 
 on: [push, pull_request]
 
+env:
+  UV_SYSTEM_PYTHON: 1
+  UV_PYTHON_DOWNLOADS: never
+  UV_PYTHON_PREFERENCE: only-system
+
 jobs:
   checks:
     runs-on: ubuntu-latest
@@ -27,7 +32,7 @@ jobs:
         uses: actions/setup-python@v6
         with:
           python-version: ${{ matrix.python-version }}
-      - name: Install Django
-        run: pip install "Django~=${{ matrix.django-version }}.0"
+      - name: Setup uv
+        uses: astral-sh/setup-uv@v7
       - name: Run Tests
-        run: python manage.py test
+        run: uv run --with "django~=${{ matrix.django-version }}" manage.py test
