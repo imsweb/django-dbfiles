@@ -17,7 +17,7 @@ This is a custom storage backend for storing files in the database instead of th
 
 ## Requirements
 
-* Python 3.8 or above
+* Python 3.10 or above
 * Django 4.2 or above
 
 ## Installation
